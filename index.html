@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#f7dce8" />
+  <title>Happy 18th Birthday, Alamiya 🤍</title>
+
+  <!-- Google Fonts: the website still works if these are unavailable. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=DM+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* =========================
+       GLOBAL STYLES
+       ========================= */
+    :root {
+      --bg: #fff0e8;
+      --ink: #4a2d38;
+      --muted: #795b68;
+      --rose: #d9828f;
+      --rose-deep: #a94f67;
+      --peach: #f3b49f;
+      --apricot: #f7cfaa;
+      --mauve: #a98aa8;
+      --plum: #68465e;
+      --sage: #9eae93;
+      --cream: #fff3df;
+      --card: rgba(255, 226, 214, .88);
+      --card-soft: rgba(249, 207, 193, .82);
+      --shadow: 0 22px 60px rgba(123, 67, 77, .16);
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(243,180,159,.34), transparent 28%),
+        radial-gradient(circle at 88% 18%, rgba(169,138,168,.24), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(158,174,147,.18), transparent 34%),
+        linear-gradient(135deg, #fff0e8 0%, #ffe6d9 48%, #f6e9e0 100%);
+      color: var(--ink);
+      font-family: "Inter", system-ui, sans-serif;
+      overflow-x: hidden;
+    }
+
+    button {
+      font: inherit;
+      border: 0;
+      cursor: pointer;
+    }
+
+    .page {
+      display: none;
+      min-height: 100svh;
+      padding: 26px 18px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page.active {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pageIn .7s ease both;
+    }
+
+    @keyframes pageIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .container {
+      width: min(960px, 100%);
+      margin: auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: .20em;
+      font-size: .72rem;
+      color: var(--rose-deep);
+      font-weight: 600;
+    }
+
+    .serif {
+      font-family: "Cormorant Garamond", Georgia, serif;
+    }
+
+    .btn {
+      padding: 13px 21px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, #c9687d 0%, #d98b76 52%, #9c789a 100%);
+      color: #fff8f2;
+      box-shadow: 0 12px 30px rgba(151, 76, 91, .24);
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 38px rgba(151, 76, 91, .30);
+    }
+
+    .btn.secondary {
+      background: rgba(250, 210, 195, .72);
+      color: var(--ink);
+      border: 1px solid rgba(169, 79, 103, .18);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: .88rem;
+      margin-top: 12px;
+    }
+
+    /* =========================
+       FLOATING DECORATIONS
+       ========================= */
+    .floaters span {
+      position: fixed;
+      z-index: 1;
+      pointer-events: none;
+      opacity: .38;
+      animation: float 7s ease-in-out infinite;
+      font-size: 1.25rem;
+    }
+
+    .floaters span:nth-child(1) { left: 6%; top: 18%; }
+    .floaters span:nth-child(2) { left: 88%; top: 28%; animation-delay: 1s; }
+    .floaters span:nth-child(3) { left: 12%; top: 78%; animation-delay: 2s; }
+    .floaters span:nth-child(4) { left: 78%; top: 80%; animation-delay: 3s; }
+    .floaters span:nth-child(5) { left: 50%; top: 9%; animation-delay: 1.5s; }
+
+    @keyframes float {
+      0%,100% { transform: translateY(0) rotate(0); }
+      50% { transform: translateY(-16px) rotate(8deg); }
+    }
+
+    /* =========================
+       1. TERMINAL / RUNNING
+       ========================= */
+    #loading {
+      background: radial-gradient(circle at 20% 15%, #f6c8b7 0, transparent 34%),
+                  radial-gradient(circle at 85% 80%, #c9b4c8 0, transparent 35%),
+                  linear-gradient(135deg, #6e4a62, #8d5b69 55%, #a87372);
+      color: #fff3ea;
+    }
+
+    .terminal {
+      width: min(700px, 100%);
+      background: linear-gradient(145deg, rgba(121, 74, 91, .96), rgba(151, 95, 103, .94));
+      border: 1px solid rgba(255, 226, 214, .22);
+      border-radius: 28px;
+      box-shadow: 0 35px 100px rgba(83, 45, 61, .30);
+      overflow: hidden;
+    }
+
+    .terminal-top {
+      display: flex;
+      gap: 7px;
+      padding: 14px 16px;
+      background: rgba(255, 231, 219, .08);
+      border-bottom: 1px solid rgba(255, 231, 219, .14);
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: rgba(255, 225, 208, .42);
+    }
+
+    .terminal-body {
+      padding: 30px 24px;
+      font-family: "DM Mono", monospace;
+      font-size: .86rem;
+      line-height: 1.9;
+    }
+
+    .terminal-title {
+      color: #ffd9c8;
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+    }
+
+    .progress {
+      height: 7px;
+      background: rgba(255, 231, 219, .14);
+      border-radius: 99px;
+      overflow: hidden;
+      margin: 18px 0;
+    }
+
+    .progress > div {
+      width: 0%;
+      height: 100%;
+      background: linear-gradient(90deg, #f4a78f, #e6c28c, #c8a6bd);
+      border-radius: inherit;
+      animation: loadBar 3.5s ease forwards;
+    }
+
+    @keyframes loadBar {
+      to { width: 100%; }
+    }
+
+    .terminal-enter {
+      opacity: 0;
+      animation: appear .8s ease 3.5s forwards;
+    }
+
+    @keyframes appear {
+      to { opacity: 1; }
+    }
+
+    /* =========================
+       2. HERO
+       ========================= */
+    .hero {
+      text-align: center;
+      padding: 35px 10px;
+    }
+
+    .hero .date {
+      display: inline-block;
+      margin-top: 18px;
+      padding: 8px 14px;
+      border: 1px solid rgba(169, 79, 103, .20);
+      background: rgba(250, 214, 198, .68);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: .82rem;
+    }
+
+    .hero h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(3.6rem, 14vw, 8.3rem);
+      line-height: .82;
+      margin: 22px 0 18px;
+      font-weight: 600;
+      background: linear-gradient(135deg, #a84f67, #c46d6d 52%, #80618a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(1.7rem, 5vw, 2.8rem);
+      font-weight: 500;
+      margin: 0 auto 20px;
+    }
+
+    .hero-copy {
+      max-width: 620px;
+      margin: auto;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* =========================
+       3. CHAPTER 18
+       ========================= */
+    .chapter-card {
+      max-width: 760px;
+      margin: auto;
+      padding: clamp(30px, 7vw, 65px);
+      text-align: center;
+      background: linear-gradient(145deg, rgba(255, 224, 211, .92), rgba(247, 207, 191, .86));
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 244, 233, .65);
+      border-radius: 34px;
+      box-shadow: var(--shadow);
+    }
+
+    .big-18 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(6rem, 25vw, 12rem);
+      line-height: .8;
+      margin: 25px 0;
+      background: linear-gradient(135deg, #c96b7d, #d7957e 52%, #94789c);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .chapter-card p {
+      max-width: 610px;
+      margin: 0 auto 28px;
+      line-height: 1.85;
+      color: var(--muted);
+    }
+
+    /* =========================
+       4. CAKE
+       ========================= */
+    .cake-wrap {
+      text-align: center;
+    }
+
+    .cake {
+      position: relative;
+      width: 230px;
+      height: 210px;
+      margin: 35px auto 25px;
+    }
+
+    .cake-top {
+      position: absolute;
+      top: 65px;
+      left: 25px;
+      width: 180px;
+      height: 55px;
+      border-radius: 50%;
+      background: #ffe7d8;
+      border: 4px solid #c97879;
+      z-index: 3;
+    }
+
+    .cake-body {
+      position: absolute;
+      top: 92px;
+      left: 25px;
+      width: 180px;
+      height: 75px;
+      border-radius: 0 0 24px 24px;
+      background: linear-gradient(#efb4a2, #d98692);
+      border: 4px solid #c97879;
+      border-top: 0;
+      z-index: 2;
+    }
+
+    .cake-body::after {
+      content: "♡  ♡  ♡";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 18px;
+      text-align: center;
+      color: #9f5065;
+      letter-spacing: 8px;
+    }
+
+    .icing {
+      position: absolute;
+      top: 92px;
+      left: 30px;
+      width: 170px;
+      height: 35px;
+      background: #ffe9d8;
+      border-radius: 0 0 18px 18px;
+      z-index: 4;
+    }
+
+    .candle {
+      position: absolute;
+      top: 20px;
+      width: 12px;
+      height: 52px;
+      background: linear-gradient(90deg, #a98aa8, #f2c09f);
+      border-radius: 7px;
+      z-index: 6;
+    }
+
+    .c1 { left: 78px; }
+    .c2 { left: 109px; }
+    .c3 { left: 140px; }
+
+    .flame {
+      position: absolute;
+      width: 17px;
+      height: 25px;
+      background: #ffd47b;
+      border-radius: 50% 50% 50% 10%;
+      transform: rotate(45deg);
+      top: -22px;
+      left: -3px;
+      box-shadow: 0 0 18px rgba(255,198,98,.65);
+      animation: flame .55s ease-in-out infinite alternate;
+    }
+
+    @keyframes flame {
+      to { transform: rotate(40deg) scale(1.07); }
+    }
+
+    .flame.off {
+      display: none;
+    }
+
+    /* =========================
+       5. LETTER
+       ========================= */
+    .letter-card {
+      max-width: 820px;
+      margin: auto;
+    }
+
+    .envelope {
+      text-align: center;
+      background: linear-gradient(145deg, rgba(255, 224, 211, .94), rgba(246, 204, 190, .88));
+      border: 1px solid rgba(169, 79, 103, .15);
+      border-radius: 28px;
+      padding: 38px 24px;
+      box-shadow: var(--shadow);
+    }
+
+    .envelope-icon {
+      font-size: 4.5rem;
+      margin: 10px 0 15px;
+      display: block;
+    }
+
+    .letter {
+      display: none;
+      margin-top: 25px;
+      padding: clamp(25px, 6vw, 48px);
+      text-align: left;
+      background:
+        linear-gradient(rgba(255, 238, 224, .96), rgba(250, 218, 204, .96)),
+        repeating-linear-gradient(to bottom, transparent 0 31px, rgba(169, 138, 168, .14) 32px);
+      border: 1px solid rgba(169, 79, 103, .13);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .letter.open {
+      display: block;
+      animation: pageIn .8s ease both;
+    }
+
+    .letter h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 2.2rem;
+      margin-top: 0;
+      color: #984f66;
+    }
+
+    .letter p {
+      line-height: 1.85;
+      color: #654c57;
+      font-size: .97rem;
+    }
+
+    .letter .signature {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.3rem;
+      margin-top: 25px;
+    }
+
+    /* =========================
+       6. MEMORY LOADING
+       ========================= */
+    .memory-loader {
+      max-width: 680px;
+      margin: auto;
+      text-align: center;
+      font-family: "DM Mono", monospace;
+      background: linear-gradient(145deg, #7a526a, #a46d73 58%, #9b7a93);
+      color: #fff1e8;
+      border-radius: 28px;
+      padding: 35px 25px;
+      box-shadow: 0 30px 80px rgba(88, 48, 66, .24);
+    }
+
+    .memory-loader .progress {
+      margin: 25px auto;
+      max-width: 500px;
+    }
+
+    .memory-loader .progress > div {
+      animation: loadBar 3s ease forwards;
+    }
+
+    /* =========================
+       7. PHOTO GALLERY
+       ========================= */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      margin: 8px 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 620px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .photo-card {
+      position: relative;
+      background: #f8d9c9;
+      padding: 8px 8px 17px;
+      box-shadow: 0 14px 35px rgba(116, 65, 77, .16);
+      border-radius: 5px;
+      transform: rotate(var(--r));
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+
+    .photo-card:hover {
+      transform: rotate(0) translateY(-5px);
+      box-shadow: 0 20px 45px rgba(116, 65, 77, .22);
+    }
+
+    .photo-card img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      display: block;
+      border-radius: 2px;
+      cursor: pointer;
+    }
+
+    .photo-card figcaption {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.1rem;
+      text-align: center;
+      margin-top: 8px;
+    }
+
+    /* =========================
+       8. REASONS
+       ========================= */
+    .reasons {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
+      max-width: 760px;
+      margin: auto;
+    }
+
+    .reason {
+      min-height: 150px;
+      padding: 22px;
+      background: linear-gradient(145deg, rgba(250, 211, 197, .92), rgba(238, 192, 177, .84));
+      border: 1px solid rgba(169, 79, 103, .12);
+      border-radius: 22px;
+      box-shadow: 0 12px 35px rgba(91,60,80,.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .reason-number {
+      font-family: "DM Mono", monospace;
+      color: var(--rose-deep);
+      font-size: .75rem;
+    }
+
+    .reason strong {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    /* =========================
+       9. FRIENDSHIP REPORT
+       ========================= */
+    .report {
+      max-width: 680px;
+      margin: auto;
+      padding: 26px;
+      background: linear-gradient(145deg, #725066, #a56f75 58%, #90748e);
+      color: #fff1e8;
+      border-radius: 25px;
+      font-family: "DM Mono", monospace;
+      box-shadow: 0 30px 80px rgba(86, 49, 66, .20);
+    }
+
+    .report-line {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 11px 0;
+      border-bottom: 1px solid rgba(255, 231, 219, .14);
+      font-size: .82rem;
+    }
+
+    .report-line span:last-child {
+      color: #ffd9c8;
+      text-align: right;
+    }
+
+    .report-success {
+      text-align: center;
+      margin-top: 22px;
+      color: #ffd9c8;
+    }
+
+    /* =========================
+       10. FUTURE WISH
+       ========================= */
+    .future {
+      max-width: 780px;
+      margin: auto;
+      text-align: center;
+      padding: clamp(32px, 8vw, 65px);
+      background: linear-gradient(145deg, rgba(255, 224, 211, .94), rgba(243, 201, 184, .88));
+      border-radius: 35px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255, 242, 231, .62);
+    }
+
+    .future h2 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(2.7rem, 9vw, 5rem);
+      margin: 12px 0 25px;
+    }
+
+    .future p {
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 650px;
+      margin: 0 auto;
+    }
+
+    /* =========================
+       11. FINAL
+       ========================= */
+    .final {
+      text-align: center;
+      min-height: 100svh;
+    }
+
+    .final h1 {
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: clamp(3.4rem, 13vw, 7.5rem);
+      line-height: .9;
+      margin: 18px 0;
+      background: linear-gradient(135deg, #a94f67, #d17b70 52%, #80618a);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .final p {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .signature-final {
+      margin-top: 30px;
+      font-family: "Cormorant Garamond", Georgia, serif;
+      font-size: 1.6rem;
+    }
+
+    /* =========================
+       PHOTO LIGHTBOX
+       ========================= */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(91, 53, 70, .90);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.show {
+      display: flex;
+    }
+
+    .lightbox img {
+      max-width: min(94vw, 850px);
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 30px 100px rgba(64, 38, 53, .48);
+    }
+
+    .close-lightbox {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.88);
+      color: #65404e;
+      font-size: 1.3rem;
+    }
+
+    /* =========================
+       CONFETTI
+       ========================= */
+    .confetti-piece {
+      position: fixed;
+      top: -20px;
+      width: 9px;
+      height: 15px;
+      z-index: 90;
+      pointer-events: none;
+      animation: confettiFall 3.8s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       RESPONSIVE
+       ========================= */
+    @media (max-width: 620px) {
+      .page { padding-left: 14px; padding-right: 14px; }
+      .gallery { grid-template-columns: 1fr; }
+      .reasons { grid-template-columns: 1fr; }
+      .report-line { font-size: .74rem; }
+      .terminal-body { padding: 25px 18px; font-size: .76rem; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Floating decorative elements -->
+  <div class="floaters" aria-hidden="true">
+    <span>✦</span><span>♡</span><span>✧</span><span>🌷</span><span>⋆</span>
+  </div>
+
+  <!-- =========================================
+       1. RUNNING SCREEN
+       ========================================= -->
+  <section class="page active" id="loading">
+    <div class="terminal">
+      <div class="terminal-top">
+        <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+      </div>
+      <div class="terminal-body">
+        <div class="terminal-title">birthday.exe</div>
+        <div>&gt; Initializing something special...</div>
+        <div>&gt; Loading friendship...</div>
+        <div>&gt; Loading memories...</div>
+        <div>&gt; Preparing surprise for <strong>Alamiya</strong>...</div>
+
+        <div class="progress"><div></div></div>
+
+        <div>&gt; Status: READY ✓</div>
+        <div>&gt; Birthday mode: ON ✨</div>
+
+        <div class="terminal-enter" style="margin-top:22px; text-align:center;">
+          <button class="btn" onclick="goTo('welcome')">ENTER THE SURPRISE ✨</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       2. HAPPY BIRTHDAY
+       ========================================= -->
+  <section class="page" id="welcome">
+    <div class="container hero">
+      <div class="eyebrow">A little birthday universe made specially for</div>
+
+      <h1>Alamiya</h1>
+
+      <h2>Happy Birthday, Alamiya! 🤍</h2>
+
+      <div class="date">04 • 09 • 2008</div>
+
+      <p class="hero-copy" style="margin-top:22px;">
+        Today isn't just another day — it's the beginning of your
+        <strong>18th chapter</strong>. ✨
+      </p>
+
+      <button class="btn" style="margin-top:25px;" onclick="goTo('chapter')">
+        Continue 🌷
+      </button>
+    </div>
+  </section>
+
+  <!-- =========================================
+       3. CHAPTER 18
+       ========================================= -->
+  <section class="page" id="chapter">
+    <div class="container">
+      <div class="chapter-card">
+        <div class="eyebrow">Chapter 18 begins here</div>
+        <div class="big-18">18</div>
+
+        <p>
+          May this new chapter bring you the kind of happiness that stays,
+          dreams that come true, people who genuinely value you, and countless
+          moments that become beautiful memories. 🤍
+        </p>
+
+        <p>
+          <strong>Welcome to Chapter 18, Alamiya.</strong> ✨
+        </p>
+
+        <button class="btn" onclick="goTo('cake')">Open your surprise →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       4. CAKE
+       ========================================= -->
+  <section class="page" id="cake">
+    <div class="container cake-wrap">
+      <div class="eyebrow">A little celebration</div>
+      <h2 class="serif" style="font-size:clamp(2.5rem,8vw,4.5rem); margin:10px 0;">
+        Make a wish, birthday girl. 🎂
+      </h2>
+
+      <div class="cake" aria-label="Birthday cake">
+        <div class="candle c1"><span class="flame"></span></div>
+        <div class="candle c2"><span class="flame"></span></div>
+        <div class="candle c3"><span class="flame"></span></div>
+        <div class="cake-top"></div>
+        <div class="icing"></div>
+        <div class="cake-body"></div>
+      </div>
+
+      <button class="btn" id="blowBtn" onclick="blowCandles()">
+        Blow out the candles ✨
+      </button>
+
+      <p class="hint" id="cakeHint">Make your wish first... then tap the button. 💫</p>
+
+      <button class="btn secondary" id="afterCakeBtn"
+              style="display:none; margin-top:18px;"
+              onclick="goTo('letter')">
+        There's a letter for you 💌
+      </button>
+    </div>
+  </section>
+
+  <!-- =========================================
+       5. LETTER
+       ========================================= -->
+  <section class="page" id="letter">
+    <div class="container letter-card">
+      <div class="envelope">
+        <div class="eyebrow">Private message</div>
+        <span class="envelope-icon">💌</span>
+        <h2 class="serif" style="font-size:2.4rem; margin:8px 0;">
+          You have 1 unread letter
+        </h2>
+        <p class="hint">Written especially for Alamiya.</p>
+
+        <button class="btn" onclick="openLetter()" id="openLetterBtn">
+          Open the letter 💗
+        </button>
+      </div>
+
+      <article class="letter" id="letterContent">
+        <h2>💌 A Letter for Alamiya</h2>
+
+        <p><strong>Dear Alamiya,</strong></p>
+
+        <p>
+          Happy 18th Birthday to one of the most special people in my life. 🤍
+        </p>
+
+        <p>
+          It's crazy to think that we've been such close friends for only about
+          a year, because somehow, our friendship feels much older and deeper than that.
+        </p>
+
+        <p>
+          One of my favourite things about us is how much we laugh together.
+          Our random jokes, <em>A2F</em> moments, nonsense conversations, and the way
+          our mentality is almost exactly the same make everything so much more fun.
+          Sometimes I don't even need to explain what I'm thinking—you just get it. 😂
+        </p>
+
+        <p>
+          We don't have a lot of photos together, but honestly, I don't think
+          photos can measure how deep a friendship is. We may not have hundreds
+          of pictures, but we have countless moments, conversations, laughs,
+          and memories that mean so much more to me. 🤍
+        </p>
+
+        <p>
+          I've done things for you that I had never done for anyone before,
+          simply because you became someone who genuinely matters to me.
+          And I'm really grateful for all the happiness, comfort, and craziness we've shared.
+        </p>
+
+        <p>
+          Now you're officially <strong>18</strong>, and I hope this new chapter
+          brings you endless happiness, success, beautiful opportunities,
+          and everything you've ever wished for. ✨
+        </p>
+
+        <p>
+          I hope we keep laughing at the same stupid jokes, understanding each
+          other's minds, and creating memories—even if we don't always have a camera with us. 😂🫶🏻
+        </p>
+
+        <p>
+          Thank you for being my best friend, my partner in jokes,
+          and my same-mentality person.
+        </p>
+
+        <p>
+          <strong>Happy 18th Birthday, Alamiya. 🎂🤍</strong>
+        </p>
+
+        <p>
+          Stay happy, stay crazy, and always stay exactly who you are.
+        </p>
+
+        <p>
+          <strong>Some friendships are captured in photos.<br>
+          Ours is captured in memories. 🌷</strong>
+        </p>
+
+        <p class="signature">
+          With lots of love,<br>
+          <strong>Yusra 🤍</strong>
+        </p>
+      </article>
+
+      <div style="text-align:center; margin-top:25px;">
+        <button class="btn secondary" onclick="goTo('memories')">
+          Continue to our memories →
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       6. MEMORY LOADING
+       ========================================= -->
+  <section class="page" id="memories">
+    <div class="container">
+      <div class="memory-loader">
+        <div>&gt; Searching friendship database...</div>
+        <div>&gt; Finding the best memories...</div>
+        <div>&gt; Checking laughs... ∞ found 😂</div>
+
+        <div class="progress"><div></div></div>
+
+        <div>&gt; Memories loaded ✓</div>
+        <div style="margin-top:18px;">Some memories are worth keeping forever. 🤍</div>
+
+        <button class="btn" style="margin-top:25px;" onclick="goTo('gallery')">
+          View our memories 📸
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       7. PHOTO GALLERY
+       ========================================= -->
+  <section class="page" id="gallery">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Our little collection</div>
+        <h2>Some memories 📸</h2>
+        <p>
+          We may not have a huge number of photos together, but every little
+          moment behind them means something. 🤍
+        </p>
+      </div>
+
+      <div class="gallery">
+        <figure class="photo-card" style="--r:-1.5deg;">
+          <img src="photo-assets/photo1.jpg" alt="Alamiya memory 1" onclick="showPhoto(this.src)">
+          <figcaption>A little moment 🤍</figcaption>
+        </figure>
+
+        <figure class="photo-card" style="--r:1.5deg;">
+          <img src="photo-assets/photo2.jpg" alt="Alamiya memory 2" onclick="showPhoto(this.src)">
+          <figcaption>Just us being us 😂</figcaption>
+        </figure>
+
+        <figure class="photo-card" style="--r:-1deg;">
+          <img src="photo-assets/photo3.jpg" alt="Alamiya memory 3" onclick="showPhoto(this.src)">
+          <figcaption>A memory worth keeping ✨</figcaption>
+        </figure>
+
+        <figure class="photo-card" style="--r:1deg;">
+          <img src="photo-assets/photo4.jpg" alt="Alamiya memory 4" onclick="showPhoto(this.src)">
+          <figcaption>Same energy, always 🫶🏻</figcaption>
+        </figure>
+
+        <figure class="photo-card" style="--r:-2deg;">
+          <img src="photo-assets/photo5.jpg" alt="Alamiya memory 5" onclick="showPhoto(this.src)">
+          <figcaption>Another little memory 🌷</figcaption>
+        </figure>
+      </div>
+
+      <div style="text-align:center; margin-top:30px;">
+        <button class="btn" onclick="goTo('reasons')">
+          There is more... 🫶🏻
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       8. REASONS
+       ========================================= -->
+  <section class="page" id="reasons">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">A few things about us</div>
+        <h2>Why this friendship is special 🤍</h2>
+      </div>
+
+      <div class="reasons">
+        <div class="reason">
+          <span class="reason-number">01</span>
+          <strong>We laugh way too much. 😂</strong>
+        </div>
+
+        <div class="reason">
+          <span class="reason-number">02</span>
+          <strong>Our mentality is almost the same. 😭</strong>
+        </div>
+
+        <div class="reason">
+          <span class="reason-number">03</span>
+          <strong>Our A2F jokes deserve their own category. 😂</strong>
+        </div>
+
+        <div class="reason">
+          <span class="reason-number">04</span>
+          <strong>Even ordinary moments become memories.</strong>
+        </div>
+
+        <div class="reason">
+          <span class="reason-number">05</span>
+          <strong>Two years of friendship, countless moments. 🌷</strong>
+        </div>
+
+        <div class="reason">
+          <span class="reason-number">06</span>
+          <strong>And somehow, we're always happier together. 🫶🏻</strong>
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:30px;">
+        <button class="btn" onclick="goTo('report')">
+          Run friendship analysis 💻
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       9. FRIENDSHIP SYSTEM REPORT
+       ========================================= -->
+  <section class="page" id="report">
+    <div class="container">
+      <div class="section-heading">
+        <div class="eyebrow">Developer edition</div>
+        <h2>Friendship System Report 💻</h2>
+      </div>
+
+      <div class="report">
+        <div class="report-line"><span>Best Friend</span><span>Alamiya Shaikh</span></div>
+        <div class="report-line"><span>Friendship Age</span><span>2 years ✨</span></div>
+        <div class="report-line"><span>Known Each Other</span><span>12 years</span></div>
+        <div class="report-line"><span>Laughs Shared</span><span>∞</span></div>
+        <div class="report-line"><span>A2F Jokes</span><span>9999+</span></div>
+        <div class="report-line"><span>Same Mentality</span><span>100%</span></div>
+        <div class="report-line"><span>Random Conversations</span><span>∞</span></div>
+        <div class="report-line"><span>Arguments</span><span>404 NOT FOUND 😂</span></div>
+        <div class="report-line"><span>Replacement</span><span>NOT AVAILABLE</span></div>
+        <div class="report-line"><span>Friendship Status</span><span>PERMANENT ❤️</span></div>
+
+        <div class="report-success">
+          ✓ BEST FRIENDSHIP SYSTEM RUNNING PERFECTLY
+        </div>
+      </div>
+
+      <div style="text-align:center; margin-top:30px;">
+        <button class="btn" onclick="goTo('future')">
+          One more thing... 🌙
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       10. FUTURE WISH
+       ========================================= -->
+  <section class="page" id="future">
+    <div class="container">
+      <div class="future">
+        <div class="eyebrow">For your 18th chapter</div>
+
+        <h2>For your future, Alamiya... 🌙</h2>
+
+        <p>
+          I hope you grow into everything you've ever dreamed of becoming.
+          I hope you find reasons to smile on ordinary days, discover beautiful
+          opportunities, and always have people around you who genuinely value you.
+        </p>
+
+        <p style="margin-top:20px;">
+          And wherever life takes us, I hope there will always be another memory
+          waiting for us to make together—even when we don't have a camera with us. 🤍
+        </p>
+
+        <button class="btn" style="margin-top:30px;" onclick="goTo('final'); celebrate()">
+          Open the final surprise 🎁
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================
+       11. FINAL SURPRISE
+       ========================================= -->
+  <section class="page final" id="final">
+    <div class="container">
+      <div class="eyebrow">Birthday.exe completed successfully ✓</div>
+
+      <h1>Happy 18th<br>Birthday,<br>Alamiya! 🎂</h1>
+
+      <p>
+        Here's to 18, new beginnings, bigger dreams,<br>
+        endless laughs, and many more memories together. ✨
+      </p>
+
+      <div class="signature-final">
+        Made with ❤️ by Yusra Sheikh
+      </div>
+
+      <p style="margin-top:18px; font-size:.82rem;">
+        friendship.exe — permanently installed 🤍
+      </p>
+    </div>
+  </section>
+
+  <!-- PHOTO LIGHTBOX -->
+  <div class="lightbox" id="lightbox" onclick="closePhoto()">
+    <button class="close-lightbox" onclick="closePhoto()">×</button>
+    <img id="lightboxImg" src="" alt="Full-size memory" onclick="event.stopPropagation()">
+  </div>
+
+  <script>
+    /* =========================
+       PAGE NAVIGATION
+       ========================= */
+    function goTo(id) {
+      document.querySelectorAll(".page").forEach(page => {
+        page.classList.remove("active");
+      });
+
+      const target = document.getElementById(id);
+      target.classList.add("active");
+
+      window.scrollTo({ top: 0, behavior: "instant" });
+    }
+
+    /* =========================
+       CAKE / CANDLES
+       ========================= */
+    function blowCandles() {
+      document.querySelectorAll(".flame").forEach(flame => {
+        flame.classList.add("off");
+      });
+
+      document.getElementById("blowBtn").style.display = "none";
+      document.getElementById("cakeHint").textContent =
+        "Wish made. May it come true. 💫";
+
+      document.getElementById("afterCakeBtn").style.display = "inline-block";
+      celebrate();
+    }
+
+    /* =========================
+       LETTER
+       ========================= */
+    function openLetter() {
+      document.getElementById("letterContent").classList.add("open");
+      document.getElementById("openLetterBtn").textContent = "Letter opened ✓";
+      document.getElementById("openLetterBtn").disabled = true;
+      document.getElementById("openLetterBtn").style.opacity = ".65";
+    }
+
+    /* =========================
+       CONFETTI
+       ========================= */
+    function celebrate() {
+      const symbols = ["✦", "♡", "✧", "•", "🌸", "✨"];
+
+      for (let i = 0; i < 70; i++) {
+        const piece = document.createElement("span");
+        piece.className = "confetti-piece";
+        piece.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.fontSize = (8 + Math.random() * 12) + "px";
+        piece.style.animationDelay = (Math.random() * .9) + "s";
+        piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+        document.body.appendChild(piece);
+
+        setTimeout(() => piece.remove(), 5000);
+      }
+    }
+
+    /* =========================
+       PHOTO LIGHTBOX
+       ========================= */
+    function showPhoto(src) {
+      document.getElementById("lightboxImg").src = src;
+      document.getElementById("lightbox").classList.add("show");
+    }
+
+    function closePhoto() {
+      document.getElementById("lightbox").classList.remove("show");
+    }
+
+    /* Close photo viewer with Escape. */
+    document.addEventListener("keydown", event => {
+      if (event.key === "Escape") closePhoto();
+    });
+  </script>
+</body>
+</html>
